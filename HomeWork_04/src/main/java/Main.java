@@ -40,49 +40,10 @@ public class Main {
 
         Session session = sessionFactory.getCurrentSession();
 
-        Course course1 = new Course("OOP", "8 hours");
-        Course course2 = new Course("MD", "2 hours");
-        Course course3 = new Course("MD", "4 hours");
+        Course course1 = new Course("course1", "8 hours");
+        Course course2 = new Course("course2", "2 hours");
+        Course course3 = new Course("course3", "4 hours");
 
-//        try{
-//            session.beginTransaction();
-//
-//            Course course1 = new Course("Nets", "8 hours");
-//            System.out.println(course1);
-//
-//            /**
-//             * Вставка данных в таблицу
-//             */
-//            session.save(course1);
-//            System.out.println("Course save successfully");
-//            /**
-//             * Чтение из базы данных
-//             */
-//            Course retrievedCourse = session.get(Course.class, course1.getId());
-//            System.out.println("Retrieved course is " + retrievedCourse);
-//            System.out.println("Read course successfully");
-//            /**
-//             * Обновление данных в БД
-//             */
-//            retrievedCourse.setTitle("Java");
-//            retrievedCourse.setDuration("48 hours");
-//            session.update(retrievedCourse);
-//            System.out.println("Update course successfully");
-//            /**
-//             * Удаление из БД
-//             */
-//            Course course2 = new Course("SQL", "16 hours");
-//            Course course3 = new Course("Python", "16 hours");
-//            session.save(course2);
-//            session.save(course3);
-//
-//            session.delete(course2);
-//            System.out.println("Course delete successfully");
-//            session.getTransaction().commit();
-//            System.out.println("Application close");
-//        } finally {
-//            session.close();
-//        }
         /**
          * Добавление объекта в БД
          */
