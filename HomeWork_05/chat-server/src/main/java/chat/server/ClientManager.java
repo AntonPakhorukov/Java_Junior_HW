@@ -85,15 +85,6 @@ public class ClientManager implements Runnable{ // Делаем для запу�
      * Отправка сообщений всем слушателям
      * ToDo: реализовать приватные сообщения
      */
-
-    /**
-     * String str = "$Garry hello my best friend!";
-     * System.out.println(str); // $Garry hello my best friend!
-     * String[] strArray = str.split(" ");
-     * System.out.println(Arrays.toString(strArray)); // [$Garry, hello, my, best, friend!]
-     * System.out.println(strArray[0].charAt(0)); // $
-     *
-     */
     private void broadcastMessage(String message) {
         String[] messageArray = message.split(" ");
         System.out.println(Arrays.toString(messageArray));
