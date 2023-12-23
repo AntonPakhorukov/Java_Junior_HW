@@ -87,31 +87,38 @@ public class ClientManager implements Runnable{ // Делаем для запу�
      */
     private void broadcastMessage(String message) {
         String[] messageArray = message.split(" ");
-        System.out.println(Arrays.toString(messageArray));
-        System.out.println(messageArray[1].charAt(1));
+        boolean isPresent = false;
         if (messageArray[1].charAt(0) == '$') {
-            System.out.println("есть $");
             StringBuilder privateMessage = new StringBuilder();
             String messageFor = messageArray[1].substring(1);
-            System.out.println("Message for " + messageFor + ".");
             for (int i = 2; i < messageArray.length; i++) {
                 privateMessage.append(messageArray[i]).append(" ");
             }
-            System.out.println("Message: " + privateMessage);
             for (ClientManager client : clients) {
                 try {
                     if (client.name.equals(messageFor)){
                         client.bufferedWriter.write(name + ": " + String.valueOf(privateMessage));
                         client.bufferedWriter.newLine();
                         client.bufferedWriter.flush();
-                    } else {
-                        System.out.println("Клиента с таким именем нет в чате.");
+                        isPresent = true;
                     }
                 } catch (IOException e){
                     closeEverything(socket, bufferedWriter, bufferedReader);
                 }
             }
-
+            if (!isPresent) {
+                try {
+                    for (ClientManager cl : clients) {
+                        if (cl.name.equals(name)) {
+                            cl.bufferedWriter.write("Клиента с таким именем нет в чате.");
+                            cl.bufferedWriter.newLine();
+                            cl.bufferedWriter.flush();
+                        }
+                    }
+                } catch (IOException e) {
+                    closeEverything(socket, bufferedWriter, bufferedReader);
+                }
+            }
         } else {
             for (ClientManager client : clients) {
                 try {
